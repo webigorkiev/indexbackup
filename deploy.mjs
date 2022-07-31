@@ -63,4 +63,4 @@ await spawnLog("yarn publish ./dist --access=public --new-version=" + pkg.versio
 console.log(green, "5. Successful process end", black);
 console.log("GitHub", `https://github.com/webigorkiev/${label}/`);
 console.log("GitHub Pages", `https://webigorkiev.github.io/${label}/`);
-console.log("npm", `https://github.com/webigorkiev/${label}`);
+console.log("npm", `https://www.npmjs.com/package/${label}`);
