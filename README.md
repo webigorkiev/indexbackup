@@ -34,3 +34,9 @@ sudo indexbackup > aws s3 cp - s3://fr2-manticore/daily/backup.tar.gz
 * -h/--host - specify host (default: 127.0.0.1)
 * -P/--port - specify port (default: 9306)
 * --index=index1,index2 - specify indexes
+* 
+### Check version
+
+```shell
+indexbackup -v
+```

@@ -1,3 +1,9 @@
+## 0.0.4
+
+### Improvements
+
+* add -v|--version option
+
 ## 0.0.3
 
 ### Bug fixes

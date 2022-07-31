@@ -12,6 +12,12 @@ import archiver from "archiver";
  */
 (async() => {
     const argv = margv();
+    const showVersion = argv.v || argv.version;
+
+    if(showVersion) {
+        stdout.write("indexdump: %VERSION%" + "\n");
+        process.exit(0);
+    }
 
     if(argv.$.length < 3) {
         console.error("Error parse arguments. Use: indexbackup index > name.tar.gz");
