@@ -1,0 +1,56 @@
+{
+  "name": "indexbackup",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Manticore Search physical backup utility",
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
+  "bin": {
+    "indexbackup": "index.js"
+  },
+  "scripts": {
+    "build": "yarn docs && node scripts/build.js",
+    "lint": "eslint src/** --ignore-path ./.eslintignore",
+    "docs": "typedoc --includeVersion --excludePrivate --out docs src/index.ts",
+    "deploy": "node deploy.mjs"
+  },
+  "keywords": [
+    "backup manticore index",
+    "manticore physical backup",
+    "manticoresearch",
+    "manticoresearch dump",
+    "mantickoresearch backup"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webigorkiev/indexbackup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webigorkiev/indexbackup/issues"
+  },
+  "homepage": "https://github.com/webigorkiev/indexbackup",
+  "author": "webigorkiev",
+  "license": "MIT",
+  "dependencies": {
+    "margv": "^1.1.2",
+    "mariadb": "^3.0.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.9",
+    "@types/node": "^15.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.29.1",
+    "chalk": "4",
+    "esbuild": "^0.14.51",
+    "eslint": "^7.26.0",
+    "fs-extra": "^10.0.1",
+    "prompts": "^2.4.2",
+    "rollup": "^2.56.2",
+    "rollup-plugin-dts": "^3.0.2",
+    "rollup-plugin-esbuild": "^4.5.0",
+    "ts-loader": "^9.2.2",
+    "typedoc": "^0.22.13",
+    "typescript": "^4.3.2"
+  }
+}
