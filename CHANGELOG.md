@@ -1,3 +1,9 @@
+## 0.0.5
+
+### Bug fixes
+
+* Fix commands in readme
+
 ## 0.0.4
 
 ### Improvements
