@@ -3,8 +3,6 @@ import * as path from "path";
 import margv from "margv";
 import mariadb from "mariadb";
 import {stdout} from "process";
-import {performance} from "perf_hooks";
-import tar from "tar";
 import archiver from "archiver";
 
 /**
@@ -23,12 +21,10 @@ import archiver from "archiver";
     const host = (argv.$.find((v: string) => v.indexOf("-h") === 0) || "").replace("-h", "") || argv["h"] || argv["host"] || "127.0.01";
     const port = (argv.$.find((v: string) => v.indexOf("-P") === 0) || "").replace("-P", "") || argv["P"] || argv["port"] || 9306;
     const index = argv.$.pop();
-    const indexes = argv['index']
+    let indexes = argv['index']
         ? Array.isArray(argv['index']) ? argv['index'] : argv['index'].split(",").map((v: string) => v.trim())
         : [index];
     const isAll = !!argv['all'];
-    let isFirst = true;
-
 
     // connection
     const conn = await mariadb.createConnection({host, port});
@@ -37,15 +33,21 @@ import archiver from "archiver";
 
     const backup = async(index: string) => {
         try {
-            // const files: string[] = (await conn.query(`LOCK ${index};`)).map((row: { normalized: string, file: string }) => row['file']);
-            const files: string[] = ['/Users/igorkhomenko/projects/packages/indexbackup/README.md'];
-            await new Promise(resolve => arch
-                .append(fs.createReadStream(files[0]), {name: files[0]})
-                .on("entry", () => resolve(true))
-            )
+            const files: string[] = (await conn.query(`LOCK ${index};`)).map((row: { normalized: string, file: string }) => row['file']);
+            for(const file of files) {
+                await new Promise(resolve => arch
+                    .append(fs.createReadStream(file), {name: path.join(index, path.basename(file))})
+                    .on("entry", () => resolve(true))
+                )
+            }
         } finally {
-
+            await conn.query(`UNLOCK ${index};`);
         }
+    }
+
+    if(isAll) {
+        indexes = (await conn.query(`SHOW TABLES;`))
+            .map((row: {Index: string}) => row['Index'])
     }
 
     for(const current of indexes) {
