@@ -35,10 +35,15 @@ import archiver from "archiver";
         try {
             const files: string[] = (await conn.query(`LOCK ${index};`)).map((row: { normalized: string, file: string }) => row['file']);
             for(const file of files) {
-                await new Promise(resolve => arch
-                    .append(fs.createReadStream(file), {name: path.join(index, path.basename(file))})
-                    .on("entry", () => resolve(true))
-                )
+                await new Promise(resolve => {
+                    const entryListener = () => {
+                        resolve(true);
+                        arch.off("entry", entryListener)
+                    }
+                    arch
+                        .append(fs.createReadStream(file), {name: path.join(index, path.basename(file))})
+                        .on("entry", entryListener);
+                })
             }
         } finally {
             await conn.query(`UNLOCK ${index};`);

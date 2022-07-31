@@ -4,6 +4,8 @@
 
 WARNING! Early stage of development - working with Manticore > 5.0.3
 
+Always check the result of creating a backup
+
 ## Quick start
 
 To work correctly, the script must be run with sudo or as a root user
