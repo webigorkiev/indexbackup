@@ -25,7 +25,7 @@ sudo indexbackup index_name > backup.tar.gz
 ### AWS S3
 
 ```shell
-sudo indexbackup --all > aws s3 cp - s3://fr2-manticore/daily/backup.tar.gz
+sudo indexbackup --all > aws s3 cp - s3://buket-name/daily/backup.tar.gz
 ```
 
 ## Options
