@@ -63,6 +63,7 @@ import {Writable} from "stream";
                         resolve(true);
                     }
                     const errorListener = () => {
+                        arch.off("entry", entryListener);
                         arch.off("error", errorListener);
                         dryRun && stdout.write(chalk.red(" " + "not accessible\n"));
                         resolve(true);

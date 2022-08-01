@@ -1,6 +1,6 @@
 {
   "name": "indexbackup",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": true,
   "description": "Manticore Search physical backup utility",
   "main": "./index.js",
