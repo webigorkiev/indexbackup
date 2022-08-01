@@ -1,6 +1,6 @@
 {
   "name": "indexbackup",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": true,
   "description": "Manticore Search physical backup utility",
   "main": "./index.js",
@@ -35,7 +35,8 @@
   "dependencies": {
     "archiver": "^5.3.1",
     "margv": "^1.1.2",
-    "mariadb": "^3.0.1"
+    "mariadb": "^3.0.1",
+    "chalk": "4"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.9",
@@ -43,7 +44,6 @@
     "@types/node": "^15.3.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.29.1",
-    "chalk": "4",
     "esbuild": "^0.14.51",
     "eslint": "^7.26.0",
     "fs-extra": "^10.0.1",

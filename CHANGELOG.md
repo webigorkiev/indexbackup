@@ -1,3 +1,10 @@
+## 0.0.8
+
+### Improvements
+
+* add --dry-run option
+* add --type option
+
 ## 0.0.7
 
 ### Bug fixes

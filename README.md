@@ -16,6 +16,12 @@ yarn global add indexbackup
 
 ## Create physical backup
 
+### Checking the Availability of Index Files
+
+```shell
+sudo indexbackup --dry-run index_name
+```
+
 ### Locally
 
 ```shell
@@ -34,7 +40,8 @@ sudo indexbackup --all | aws s3 cp - s3://buket-name/daily/backup.tar.gz
 * -h/--host - specify host (default: 127.0.0.1)
 * -P/--port - specify port (default: 9306)
 * --index=index1,index2 - specify indexes
-* 
+* --type=rt index types
+
 ### Check version
 
 ```shell
