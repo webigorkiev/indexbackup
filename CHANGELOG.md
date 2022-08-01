@@ -1,3 +1,11 @@
+## 0.1.0
+
+### Improvements
+
+* Add manticore.json backup
+* Add --add-config option
+* Add --data-dir option
+
 ## 0.0.10
 
 ### Improvements

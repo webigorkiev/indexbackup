@@ -36,11 +36,13 @@ sudo indexbackup --all | aws s3 cp - s3://buket-name/daily/backup.tar.gz
 
 ## Options
 
-* --all - backup of all indexes
+* --all - backup of all indexes + manticore.json if the utility can find it
 * -h/--host - specify host (default: 127.0.0.1)
 * -P/--port - specify port (default: 9306)
 * --index=index1,index2 - specify indexes
 * --type=rt index types
+* --add-config Backup manticore.json if the utility can find it, 
+* Or you can specify the data directory --data-dir=/var/lib/manticore
 
 ### Check version
 
