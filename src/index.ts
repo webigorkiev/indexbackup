@@ -5,6 +5,7 @@ import mariadb from "mariadb";
 import {stdout} from "process";
 import archiver from "archiver";
 import chalk from "chalk";
+import {Writable} from "stream";
 
 /**
  * indexbackup index > name.tar.gz
@@ -39,11 +40,15 @@ import chalk from "chalk";
     const dryRun = !!argv['dry-run'];
 
     dryRun && stdout.write(chalk.yellow("\n----- Start dry run -----\n"));
+    const devNull = new Writable({
+        write(chunk: any, encoding: BufferEncoding, callback: (error?: (Error | null)) => void) { setImmediate(callback); }
+    });
 
     // connection
     const conn = await mariadb.createConnection({host, port});
     const arch = archiver('tar', {gzip: true});
     !dryRun && arch.pipe(stdout);
+    dryRun && arch.pipe(devNull);
 
     const backup = async(index: string) => {
         try {
