@@ -1,3 +1,9 @@
+## 0.1.1
+
+### Improvements
+
+* add --help option
+
 ## 0.1.0
 
 ### Improvements

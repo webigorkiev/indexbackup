@@ -16,6 +16,26 @@ import {Writable} from "stream";
         process.exit(0);
     }
 
+    // Help
+    const showHelp = !!argv.help;
+
+    if(showHelp) {
+        const TAB3 = "\t\t\t";
+        const TAB4 = "\t\t\t\t";
+        const TAB5 = "\t\t\t\t\t";
+        stdout.write(chalk.green("List of settings\n"));
+        stdout.write(chalk.bold("-h/--host") + TAB4 + "host (default: 127.0.0.1)\n");
+        stdout.write(chalk.bold("-P/--port") + TAB4 + "port (default: 9306)\n");
+        stdout.write(chalk.bold("--dry-run") + TAB4 + "run in dry mode\n");
+        stdout.write(chalk.bold("--index test1\n--index test2\n--index=test1,test2") + "\t\t" + "indexes list for dump\n");
+        stdout.write(chalk.bold("--all") + TAB5 + "backup of all indexes + manticore.json if the utility can find it\n");
+        stdout.write(chalk.bold("--type=rt") + TAB4 + "only RT index types. Possible values local,distributed,rt,percolate,template\n");
+        stdout.write(chalk.bold("--path") + TAB5 + "path from which the index will be restored (default: current)\n");
+        stdout.write(chalk.bold("--data-dir") + TAB4 + "allow to set manticore data path\n");
+        stdout.write(chalk.bold("--add-config") + TAB3 + "add manticore.json to dump\n");
+        process.exit(0);
+    }
+
     if(argv.$.length < 3) {
         console.error("Error parse arguments. Use: indexbackup index > name.tar.gz");
         process.exit(1);
