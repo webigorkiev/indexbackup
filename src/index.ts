@@ -90,7 +90,7 @@ import {Writable} from "stream";
     }
     const backup = async(index: string) => {
         try {
-            const files: string[] = (await conn.query(`FREEZE ${index};`)).map((row: { normalized: string, file: string }) => row['file']);
+            const files: string[] = (await conn.query(`FREEZE ${index}`)).map((row: { normalized: string, file: string }) => row['file']);
             for(const file of files) {
                 lastFile = file;
                 await promisifyStream(file, path.join(index, path.basename(file)));
@@ -98,7 +98,7 @@ import {Writable} from "stream";
         } catch(e: any) {
             dryRun && stdout.write(chalk.red(e?.message || "Unknown error" + "\n"));
         } finally {
-            await conn.query(`UNFREEZE ${index};`);
+            await conn.query(`UNFREEZE ${index}`);
         }
     }
 
